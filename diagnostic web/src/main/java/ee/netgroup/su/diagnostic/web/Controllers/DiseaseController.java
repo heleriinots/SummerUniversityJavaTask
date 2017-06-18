@@ -22,26 +22,57 @@ public class DiseaseController {
         return diseases;
     }
 
-    public String getThreeDiseasesWithMostSymptoms() {
-        diseases
-                .stream()
-                .mapToInt(d -> d.getNumberOfSymptoms())
-                .sorted(Comparator.reverseOrder())
-
-
-
-
-        /*
-        wines.stream().mapToDouble(wine -> wine.getFlavonoideContent())
-                .sorted()
-                .limit(5)
-                .forEach(w -> System.out.println("Väike flavonoidide sisaldus: " + w));
-        */
-        return "yo";
-    }
-
     public void sortDiseasesAlphabetically() {
         Collections.sort(diseases, Comparator.comparing(Disease::getName));
+    }
+
+    private int findLargestValue() {
+        return diseases
+                .stream()
+                .mapToInt(d -> d.getNumberOfSymptoms())
+                .max()
+                .getAsInt();
+    }
+
+    private int findSmallerLargestValue(int largestValue) {
+        return diseases
+                .stream()
+                .mapToInt(d -> d.getNumberOfSymptoms())
+                .filter(d -> d < largestValue)
+                .max()
+                .getAsInt();
+    }
+
+    private ArrayList<Disease> addMaxElements(int largestValue, ArrayList<Disease> maxValues) {
+        diseases.stream().filter(d -> d.getNumberOfSymptoms() == largestValue).forEach(d -> {
+            if (maxValues.size() < 3) {
+                maxValues.add(d);
+            }});
+        return maxValues;
+    }
+
+    public ArrayList<Disease> getThreeDiseasesWithMostSymptoms() {
+        ArrayList<Disease> maxValues = new ArrayList<>();
+        if (diseases.isEmpty()) return maxValues;
+
+        sortDiseasesAlphabetically();
+        int largestValue = findLargestValue();
+        int count = 0;
+
+        while (maxValues.size() < 3) {
+            if (count > 0) {
+                largestValue = findSmallerLargestValue(largestValue);
+            }
+
+            maxValues = addMaxElements(largestValue, maxValues);
+
+            if (maxValues.size() == diseases.size()) {
+                return maxValues;
+            }
+            count++;
+        }
+
+        return maxValues;
     }
 
 

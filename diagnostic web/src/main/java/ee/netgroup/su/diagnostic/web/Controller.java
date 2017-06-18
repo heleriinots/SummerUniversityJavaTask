@@ -20,6 +20,7 @@ public class Controller {
         b.addSymptom("a");
         b.addSymptom("c");
         b.addSymptom("d");
+        b.addSymptom("x");
         Disease bd = new Disease("bd");
         diseaseController.addDisease(bd);
         bd.addSymptom("a");
@@ -31,6 +32,11 @@ public class Controller {
         a.addSymptom("a");
         a.addSymptom("a");
         a.addSymptom("b");
+        Disease aa = new Disease("a");
+        diseaseController.addDisease(aa);
+        aa.addSymptom("a");
+        aa.addSymptom("a");
+        aa.addSymptom("b");
 
         SymptomController symptomController = new SymptomController(diseaseController);
 
@@ -54,5 +60,9 @@ public class Controller {
 
         //diseaseController.getDiseases().stream().forEach(d -> System.out.println(d.getName() + " " + d
         //        .getNumberOfSymptoms()));
+
+        diseaseController.getThreeDiseasesWithMostSymptoms();
+
+        symptomController.findThreeMostCommonSymptoms();
     }
 }

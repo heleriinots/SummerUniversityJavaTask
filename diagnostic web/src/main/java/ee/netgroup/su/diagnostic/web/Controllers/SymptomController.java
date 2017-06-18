@@ -1,5 +1,7 @@
 package ee.netgroup.su.diagnostic.web.Controllers;
 
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -37,8 +39,59 @@ public class SymptomController {
         return symptoms.size();
     }
 
-    public void findThreeMostCommonSymptoms() {
-        //
+    private int findLargestValue() {
+        Map.Entry<String, Integer> maxElement = null;
+
+        for (Map.Entry<String, Integer> entry : symptoms.entrySet()) {
+            if (maxElement == null || entry.getValue().compareTo(maxElement.getValue()) > 0) {
+                maxElement = entry;
+            }
+        }
+        return maxElement.getValue();
+    }
+
+    private int findSmallerLargestValue(int largestValue) {
+        Map.Entry<String, Integer> maxElement = null;
+
+        for (Map.Entry<String, Integer> element : symptoms.entrySet()) {
+            if (maxElement == null || element.getValue().compareTo(maxElement.getValue()) > 0) {
+                if (element.getValue() < largestValue) {
+                    maxElement = element;
+                }
+            }
+        }
+        return maxElement.getValue();
+    }
+
+    private ArrayList<String> addMaxSymptoms(int largestValue, ArrayList<String> maxValues) {
+        for (Map.Entry<String, Integer> element : symptoms.entrySet()) {
+            if (element.getValue() == largestValue) {
+                maxValues.add(element.getKey());
+            }
+        }
+        return maxValues;
+    }
+
+    public ArrayList<String> findThreeMostCommonSymptoms() {
+        ArrayList<String> maxValues = new ArrayList<>();
+        if (symptoms.isEmpty()) return maxValues;
+
+        int largestValue = findLargestValue();
+        int count = 0;
+
+        while (maxValues.size() < 3) {
+            if (count > 0) {
+                largestValue = findSmallerLargestValue(largestValue);
+            }
+
+            maxValues = addMaxSymptoms(largestValue, maxValues);
+
+            if (maxValues.size() == symptoms.size()) {
+                return maxValues;
+            }
+            count++;
+        }
+        return maxValues;
     }
 
     public TreeMap<String, Integer> getSymptoms() {

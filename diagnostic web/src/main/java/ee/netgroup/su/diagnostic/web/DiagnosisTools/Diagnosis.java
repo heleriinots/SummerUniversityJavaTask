@@ -18,7 +18,7 @@ public class Diagnosis {
         this.diseaseController = diseaseController;
     }
 
-    public String analyseSymptoms(List<String> patientsSymptoms) {
+    public ArrayList<Disease> analyseSymptoms(List<String> patientsSymptoms) {
         possibleDiseases = new ArrayList<>();
 
         for (Disease disease: diseaseController.getDiseases()) {
@@ -28,16 +28,19 @@ public class Diagnosis {
             }
             if (symptomCount == patientsSymptoms.size()) possibleDiseases.add(disease);
         }
-        return getNamesOfPossibleDiseases();
+        return possibleDiseases;
     }
 
-    private String getNamesOfPossibleDiseases() {
-        String diseaseNames = "";
-        for (int x = 0; x < possibleDiseases.size(); x++) {
-            if (x > 0) diseaseNames += "\n";
-            diseaseNames += possibleDiseases.get(x).getName();
-        }
-        return diseaseNames;
-    }
+
+    //is this useful?
+
+//    private String getNamesOfPossibleDiseases() {
+//        String diseaseNames = "";
+//        for (int x = 0; x < possibleDiseases.size(); x++) {
+//            if (x > 0) diseaseNames += "\n";
+//            diseaseNames += possibleDiseases.get(x).getName();
+//        }
+//        return diseaseNames;
+//    }
 
 }
