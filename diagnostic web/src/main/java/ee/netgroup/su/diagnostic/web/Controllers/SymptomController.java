@@ -17,7 +17,7 @@ public class SymptomController {
         addSymptoms();
     }
 
-    public void addSymptoms() {
+    private void addSymptoms() {
         diseaseController
                 .getDiseases()
                 .stream()
@@ -27,7 +27,7 @@ public class SymptomController {
                         .forEach(s -> addSymptom(s)));
     }
 
-    public void addSymptom(String symptom) {
+    private void addSymptom(String symptom) {
         if (symptoms.containsKey(symptom)) {
             symptoms.put(symptom, symptoms.get(symptom) + 1);
         } else {
@@ -65,7 +65,7 @@ public class SymptomController {
 
     private ArrayList<String> addMaxSymptoms(int largestValue, ArrayList<String> maxValues) {
         for (Map.Entry<String, Integer> element : symptoms.entrySet()) {
-            if (element.getValue() == largestValue) {
+            if (element.getValue() == largestValue && maxValues.size() < 3) {
                 maxValues.add(element.getKey());
             }
         }

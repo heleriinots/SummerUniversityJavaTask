@@ -1,6 +1,5 @@
 package ee.netgroup.su.diagnostic.web;
 
-import ee.netgroup.su.diagnostic.web.Controllers.DataController;
 import ee.netgroup.su.diagnostic.web.Controllers.DiseaseController;
 import ee.netgroup.su.diagnostic.web.Controllers.SymptomController;
 import ee.netgroup.su.diagnostic.web.DiagnosisTools.Diagnosis;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 public class Controller {
 
     public static void main(String[] args) {
-        DiseaseController diseaseController =  new DiseaseController();
+        DiseaseController diseaseController = new DiseaseController();
 
         Disease b = new Disease("b");
         diseaseController.addDisease(b);
@@ -51,7 +50,7 @@ public class Controller {
 
         //System.out.println(diagnosis.analyseSymptoms(s));
 
-        DataController dataController = new DataController(diseaseController);
+        //DataController dataController = new DataController(diseaseController);
 
         //dataController.parseSymptomsForDiagnosis("a h h, b, c, d").stream().forEach(st -> System.out.println(st));
 
