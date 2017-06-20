@@ -114,5 +114,6 @@ public class Controller {
         InteractiveDiagnosis interactiveDiagnosis = new InteractiveDiagnosis(symptomController, diseaseController);
 
         interactiveDiagnosis.askQuestion();
+
     }
 }
