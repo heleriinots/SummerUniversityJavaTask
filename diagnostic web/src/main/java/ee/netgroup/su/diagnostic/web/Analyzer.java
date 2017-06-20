@@ -66,6 +66,7 @@ public class Analyzer {
         result.append("<br/><b>Number of unique symptoms: </b>" + noOfUniqueSymptoms);
         addBreak(result);
         result.append("<br/><b>Most common symptoms: </b>" + mostCommonSymptoms);
+        addBreak(result);
     }
 
     private void addBreak(StringBuilder result) {

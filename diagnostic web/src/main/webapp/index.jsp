@@ -10,21 +10,30 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <title>Forum analyzer</title>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
 
+<ul class="menu">
+    <li><a class="active">Forum analyzer</a></li>
+    <li><a href="diagnosis.jsp">Diagnose by symptoms</a></li>
+    <li><a href="interactive-diagnosis.jsp">Interactive diagnosis</a></li>
+</ul>
+
 <center>
     <form action="index.jsp" method="post">
 
-        <textarea name="input" rows="30" cols="100">Insert program input CSV here...</textarea>
+        <textarea class="input" name="input" rows="30" cols="100">Insert program input CSV here...</textarea>
 
         <br/>
-        <input type="submit" value="Analyze"/>
+        <input class="button" type="submit" value="Analyze"/>
     </form>
 
+    <div class="answers">
+        <%= analyzer.analyze(request) %>
+    </div>
 
-    <%= analyzer.analyze(request) %>
 
     <br/><br/>
     <img src="hospital.png" alt="hospital image"/>
