@@ -34,14 +34,15 @@ public class Analyzer {
         final StringBuilder result = new StringBuilder();
         final StringReader reader = new StringReader(input);
         final BufferedReader bufferedReader = new BufferedReader(reader);
-
         createDiseaseController();
 
         while (true) {
             final String line = bufferedReader.readLine();
+
             if (line == null) {
                 break;
             }
+
             parseALineOfDiseaseData(line);
         }
 
@@ -98,42 +99,7 @@ public class Analyzer {
     }
 
     public List<String> splitData(String data) {
-        return new ArrayList<String>(Arrays.asList(data.split(", ")));
+        return new ArrayList<>(Arrays.asList(data.split(", ")));
     }
-
-
-   /* public String analyze(final HttpServletRequest request) throws IOException {
-
-        final String input = request.getParameter("input");
-
-        if (input == null)
-            return "";
-
-        final StringBuilder result = new StringBuilder();
-        final StringReader reader = new StringReader(input);
-        final BufferedReader bufferedReader = new BufferedReader(reader);
-
-
-        int linesCount = 0;
-
-        while (true) {
-            final String line = bufferedReader.readLine();
-
-            if (line == null) {
-                break;
-            }
-
-            result.append("<script>console.log('" + line + "')</script>");
-            linesCount++;
-
-            // TODO: line parsing logic ...
-        }
-        System.out.println(input);
-
-        result.append("<br/>Input parsing result:");
-        result.append("<br/>Detected " + linesCount + " line(s).");
-
-        return result.toString();
-    }*/
 
 }

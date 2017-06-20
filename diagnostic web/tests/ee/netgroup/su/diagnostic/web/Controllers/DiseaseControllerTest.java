@@ -62,10 +62,10 @@ public class DiseaseControllerTest {
         diseaseController.addDisease(a);
         diseaseController.addDisease(ab);
 
-        assertEquals(3, diseaseController.getThreeDiseasesWithMostSymptoms().size());
-        assertEquals("c", diseaseController.getThreeDiseasesWithMostSymptoms().get(0).getName());
-        assertEquals("a", diseaseController.getThreeDiseasesWithMostSymptoms().get(1).getName());
-        assertEquals("ab", diseaseController.getThreeDiseasesWithMostSymptoms().get(2).getName());
+        assertEquals(3, diseaseController.findThreeDiseasesWithMostSymptoms().size());
+        assertEquals("c", diseaseController.findThreeDiseasesWithMostSymptoms().get(0).getName());
+        assertEquals("a", diseaseController.findThreeDiseasesWithMostSymptoms().get(1).getName());
+        assertEquals("ab", diseaseController.findThreeDiseasesWithMostSymptoms().get(2).getName());
     }
 
     @Test
@@ -79,9 +79,9 @@ public class DiseaseControllerTest {
         diseaseController.addDisease(a);
         diseaseController.addDisease(ab);
 
-        assertEquals(2, diseaseController.getThreeDiseasesWithMostSymptoms().size());
-        assertEquals("a", diseaseController.getThreeDiseasesWithMostSymptoms().get(0).getName());
-        assertEquals("ab", diseaseController.getThreeDiseasesWithMostSymptoms().get(1).getName());
+        assertEquals(2, diseaseController.findThreeDiseasesWithMostSymptoms().size());
+        assertEquals("a", diseaseController.findThreeDiseasesWithMostSymptoms().get(0).getName());
+        assertEquals("ab", diseaseController.findThreeDiseasesWithMostSymptoms().get(1).getName());
     }
 
     @Test
@@ -91,13 +91,13 @@ public class DiseaseControllerTest {
 
         diseaseController.addDisease(a);
 
-        assertEquals(1, diseaseController.getThreeDiseasesWithMostSymptoms().size());
-        assertEquals("a", diseaseController.getThreeDiseasesWithMostSymptoms().get(0).getName());
+        assertEquals(1, diseaseController.findThreeDiseasesWithMostSymptoms().size());
+        assertEquals("a", diseaseController.findThreeDiseasesWithMostSymptoms().get(0).getName());
     }
 
     @Test
     public void testGetThreeDiseasesWithMaxSymptomsNoDiseases() {
-        assertEquals(0, diseaseController.getThreeDiseasesWithMostSymptoms().size());
+        assertEquals(0, diseaseController.findThreeDiseasesWithMostSymptoms().size());
     }
 
     @Test
@@ -125,10 +125,10 @@ public class DiseaseControllerTest {
         diseaseController.addDisease(a);
         diseaseController.addDisease(d);
 
-        assertEquals(3, diseaseController.getThreeDiseasesWithMostSymptoms().size());
-        assertEquals("c", diseaseController.getThreeDiseasesWithMostSymptoms().get(0).getName());
-        assertEquals("a", diseaseController.getThreeDiseasesWithMostSymptoms().get(1).getName());
-        assertEquals("b", diseaseController.getThreeDiseasesWithMostSymptoms().get(2).getName());
+        assertEquals(3, diseaseController.findThreeDiseasesWithMostSymptoms().size());
+        assertEquals("c", diseaseController.findThreeDiseasesWithMostSymptoms().get(0).getName());
+        assertEquals("a", diseaseController.findThreeDiseasesWithMostSymptoms().get(1).getName());
+        assertEquals("b", diseaseController.findThreeDiseasesWithMostSymptoms().get(2).getName());
     }
 
 
