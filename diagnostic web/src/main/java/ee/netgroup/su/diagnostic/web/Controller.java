@@ -35,7 +35,7 @@ public class Controller {
         f.addSymptom("hallucinations");
 
         Disease g = new Disease("Random Pavarotti Disease");
-        g.addSymptom("sg of operatic tunes");
+        g.addSymptom("spontaneous singing of operatic tunes");
 
         Disease h = new Disease("Mad Zombie Disease");
         h.addSymptom("zombie-like behavior");

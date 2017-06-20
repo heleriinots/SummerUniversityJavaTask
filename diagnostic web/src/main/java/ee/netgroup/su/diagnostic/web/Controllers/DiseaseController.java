@@ -51,11 +51,12 @@ public class DiseaseController {
         return maxValues;
     }
 
-    public ArrayList<Disease> getThreeDiseasesWithMostSymptoms() {
+    public ArrayList<Disease> findThreeDiseasesWithMostSymptoms() {
         ArrayList<Disease> maxValues = new ArrayList<>();
         if (diseases.isEmpty()) return maxValues;
 
         sortDiseasesAlphabetically();
+
         int largestValue = findLargestValue();
         int count = 0;
 
@@ -74,6 +75,20 @@ public class DiseaseController {
 
         return maxValues;
     }
+
+    public String findThreeDiseasesWithMostSymptomsString() {
+        String diseasesString = "";
+        ArrayList<Disease> maxSymptomDiseases = findThreeDiseasesWithMostSymptoms();
+        for (int x = 0; x <  maxSymptomDiseases.size(); x++) {
+            if (x > 0) {
+                diseasesString += ", ";
+            }
+            diseasesString += maxSymptomDiseases.get(x).getName();
+        }
+        return diseasesString;
+    }
+
+
 
 
 

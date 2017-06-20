@@ -98,5 +98,17 @@ public class SymptomController {
         return symptoms;
     }
 
+    public String findThreeMostCommonSymptomsString() {
+        String symptomString = "";
+        ArrayList<String> popularSymptoms = findThreeMostCommonSymptoms();
+        for (int x = 0; x <  popularSymptoms.size(); x++) {
+            if (x > 0) {
+                symptomString += ", ";
+            }
+            symptomString += popularSymptoms.get(x);
+        }
+        return symptomString;
+    }
+
 
 }
