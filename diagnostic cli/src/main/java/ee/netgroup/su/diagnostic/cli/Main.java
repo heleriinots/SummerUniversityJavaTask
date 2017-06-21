@@ -18,9 +18,13 @@ public class Main {
 
     private static DiseaseController diseaseController;
     private static SymptomController symptomController;
-    private static Diagnosis diagnosis;
     private static InteractiveDiagnosis interactiveDiagnosis;
+    private static Diagnosis diagnosis;
     private static boolean runApplication = true;
+
+    public static DiseaseController getDiseaseController() {
+        return diseaseController;
+    }
 
     public static void createDiseaseController() {
         diseaseController = new DiseaseController();
@@ -58,7 +62,7 @@ public class Main {
      */
     public static void main(final String[] arguments) throws IOException {
 
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(getInputFile(arguments)))){
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(getInputFile(arguments)))) {
 
             createDiseaseController();
 
@@ -66,15 +70,11 @@ public class Main {
                 final String textLine = bufferedReader.readLine();
                 if (textLine == null)
                     break;
-
                 parseALineOfDiseaseData(textLine);
             }
 
             createSymptomController();
-
-            diseaseController.printThreeDiseasesWithMostSymptoms();
-            symptomController.printNumberOfUniqueSymptoms();
-            symptomController.printThreeMostCommonSymptoms();
+            printStatistics();
 
             while (runApplication) {
                 askForAction();
@@ -82,11 +82,21 @@ public class Main {
         }
     }
 
+    private static void printStatistics() {
+        diseaseController.printThreeDiseasesWithMostSymptoms();
+        symptomController.printNumberOfUniqueSymptoms();
+        symptomController.printThreeMostCommonSymptoms();
+    }
+
     public static void askForAction() {
         System.out.println("Enter 1 to get diagnosis by symptoms");
         System.out.println("Enter 2 to get interactive diagnosis");
         System.out.println("Enter 3 to exit");
 
+        readAnswer();
+    }
+
+    private static void readAnswer() {
         Scanner reader = new Scanner(System.in);
         String answer = reader.next();
         evaluateAnswer(answer);
@@ -96,17 +106,15 @@ public class Main {
         if (answer.equals("1")) {
             createDiagnosis();
             diagnosis.askForSymptoms();
-        } else if (answer.equals("2")) {
 
+        } else if (answer.equals("2")) {
             createInteractiveDiagnosis();
             interactiveDiagnosis.askQuestion();
 
         } else if (answer.equals("3")) {
-
             runApplication = false;
 
         } else {
-
             askForAction();
         }
     }

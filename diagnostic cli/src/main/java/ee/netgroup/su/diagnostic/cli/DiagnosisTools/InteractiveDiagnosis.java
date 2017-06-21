@@ -25,12 +25,12 @@ public class InteractiveDiagnosis {
         this.symptomsToAsk = new ArrayList<>(symptomController.getSymptoms().keySet());
     }
 
-    public String composeQuestion(String symptom) {
-        return "Do you experience " + symptom + "?\n";
+    public void composeQuestion(String symptom) {
+        System.out.println("Do you experience " + symptom + "?\n");
     }
 
 
-    public List<String> symptomsInPossibleDiseases() {
+    public List<String> getSymptomsInPossibleDiseases() {
         List<String> symptoms = new ArrayList<>();
         possibleDiseases
                 .stream()
@@ -43,7 +43,7 @@ public class InteractiveDiagnosis {
 
     private void findSymptomsToAsk() {
         ArrayList<String> newSymptomsToAsk = new ArrayList<>();
-        List<String> diseaseSymptoms = symptomsInPossibleDiseases();
+        List<String> diseaseSymptoms = getSymptomsInPossibleDiseases();
         symptomsToAsk
                 .stream()
                 .forEach(s -> {
@@ -95,38 +95,45 @@ public class InteractiveDiagnosis {
         boolean askQuestions = true;
 
         while (askQuestions) {
-            String symptom = chooseAverageSymptom();
-
-            System.out.println("Question number: " + count);
-            System.out.println(composeQuestion(symptom));
-            askInput(symptom);
+            processQuestionAndInput(count);
 
             if (possibleDiseases.size() == 1) {
 
-                System.out.println("Possible diseases:\n");
-                possibleDiseases.stream().forEach(d -> System.out.println(d.getName()));
-                System.out.println("\n");
+                printPossibleDiseaases();
                 askQuestions = false;
 
             } else if (symptomsToAsk.size() == 0) {
 
-                System.out.println("No matching disease found");
-                askQuestions = false;
+                askQuestions = printNoDiseasesMessageAndExitInteractiveDiagnosis();
             } else {
 
-                findSymptomsToAsk();
-                System.out.println("Possible diseases:\n");
-                possibleDiseases.stream().forEach(d -> System.out.println(d.getName()));
-                System.out.println("\n");
+                printPossibleDiseaases();
                 findSymptomsToAsk();
             }
             if (possibleDiseases.size() == 0) {
 
-                System.out.println("No matching disease found");
-                askQuestions = false;
+                askQuestions = printNoDiseasesMessageAndExitInteractiveDiagnosis();
             }
             count++;
         }
+    }
+
+    private void processQuestionAndInput(int count) {
+        String symptom = chooseAverageSymptom();
+        System.out.println("Question number: " + count);
+        composeQuestion(symptom);
+        askInput(symptom);
+    }
+
+    private boolean printNoDiseasesMessageAndExitInteractiveDiagnosis() {
+        System.out.println("No matching disease found");
+        return false;
+    }
+
+    private void printPossibleDiseaases() {
+        System.out.println("Possible diseases:\n");
+        possibleDiseases.stream().forEach(d -> System.out.println(d.getName()));
+        System.out.println("\n");
     }
 
 
