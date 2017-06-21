@@ -19,11 +19,13 @@ public class InteractiveDiagnosis {
     private List<Disease> possibleDiseases;
     private SymptomController symptomController;
 
+
     public InteractiveDiagnosis(SymptomController symptomController, DiseaseController diseaseController) {
         this.possibleDiseases = diseaseController.getDiseases();
         this.symptomController = symptomController;
         this.symptomsToAsk = new ArrayList<>(symptomController.getSymptoms().keySet());
     }
+
 
     public void composeQuestion(String symptom) {
         System.out.println("Do you experience " + symptom + "?\n");
@@ -55,11 +57,12 @@ public class InteractiveDiagnosis {
     }
 
 
-    public String chooseAverageSymptom() {
+    private String chooseAverageSymptom() {
         ArrayList<Integer> possibleValues = findPossibleValues();
         int value = calculateIndex(possibleValues);
         return findSymptomToAskNext(value);
     }
+
 
     private String findSymptomToAskNext(int value) {
         String symptom;
@@ -74,6 +77,7 @@ public class InteractiveDiagnosis {
         return null;
     }
 
+
     private ArrayList<Integer> findPossibleValues() {
         ArrayList<Integer> possibleValues = new ArrayList<>();
 
@@ -84,6 +88,7 @@ public class InteractiveDiagnosis {
         }
         return possibleValues;
     }
+
 
     private Integer calculateIndex(ArrayList<Integer> possibleValues) {
         return possibleValues.get((possibleValues.size() - 1) / 2);
@@ -118,6 +123,7 @@ public class InteractiveDiagnosis {
         }
     }
 
+
     private void processQuestionAndInput(int count) {
         String symptom = chooseAverageSymptom();
         System.out.println("Question number: " + count);
@@ -125,10 +131,12 @@ public class InteractiveDiagnosis {
         askInput(symptom);
     }
 
+
     private boolean printNoDiseasesMessageAndExitInteractiveDiagnosis() {
         System.out.println("No matching disease found");
         return false;
     }
+
 
     private void printPossibleDiseaases() {
         System.out.println("Possible diseases:\n");
@@ -137,7 +145,7 @@ public class InteractiveDiagnosis {
     }
 
 
-    public List<Disease> findPossibleDiseases(String symptom, boolean symptomExists) {
+    private List<Disease> findPossibleDiseases(String symptom, boolean symptomExists) {
         List<Disease> newPossibleDiseases;
         if (symptomExists) {
             newPossibleDiseases = findPossibleDiseasesSymptomExists(symptom);
@@ -148,6 +156,7 @@ public class InteractiveDiagnosis {
         return possibleDiseases;
     }
 
+
     private List<Disease> findPossibleDiseasesSymptomDoesNotExist(String symptom) {
         List<Disease> newPossibleDiseases;
         newPossibleDiseases = possibleDiseases
@@ -156,6 +165,7 @@ public class InteractiveDiagnosis {
                 .collect(Collectors.toList());
         return newPossibleDiseases;
     }
+
 
     private List<Disease> findPossibleDiseasesSymptomExists(String symptom) {
         List<Disease> newPossibleDiseases;
@@ -166,7 +176,8 @@ public class InteractiveDiagnosis {
         return newPossibleDiseases;
     }
 
-    public void askInput(String symptom) {
+
+    private void askInput(String symptom) {
         Scanner reader = new Scanner(System.in);
         System.out.println("Enter y (yes) or n (no): ");
         String answer = reader.next();

@@ -1,7 +1,5 @@
-package ee.netgroup.su.diagnostic.web.Controllers;
+package ee.netgroup.su.diagnostic.cli.Controllers;
 
-import ee.netgroup.su.diagnostic.cli.Controllers.DiseaseController;
-import ee.netgroup.su.diagnostic.cli.Controllers.SymptomController;
 import ee.netgroup.su.diagnostic.cli.Disease;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,10 +15,12 @@ public class SymptomControllerTest {
     private DiseaseController diseaseController;
     private SymptomController symptomController;
 
+
     @Before
     public void runBeforeEachTest() {
         diseaseController = new DiseaseController();
     }
+
 
     @Test
     public void testAddingSymptoms() {
@@ -42,6 +42,7 @@ public class SymptomControllerTest {
         assertTrue(symptomController.getSymptoms().containsKey("c"));
     }
 
+
     @Test
     public void testCountingSymptoms() {
         Disease a = new Disease("a");
@@ -60,6 +61,7 @@ public class SymptomControllerTest {
         assertEquals(new Integer(1), symptomController.getSymptoms().get("a"));
         assertEquals(new Integer(2), symptomController.getSymptoms().get("c"));
     }
+
 
     @Test
     public void testGetNumberOfUniqueSymptoms() {
@@ -82,6 +84,7 @@ public class SymptomControllerTest {
 
         assertEquals(3, symptomController.getNumberOfUniqueSymptoms());
     }
+
 
     @Test
     public void testThreeMostCommonSymptoms() {
@@ -113,6 +116,7 @@ public class SymptomControllerTest {
         assertEquals("b", symptomController.findThreeMostCommonSymptoms().get(2));
     }
 
+
     @Test
     public void testThreeMostCommonSymptomsSameValues() {
         Disease a = new Disease("a");
@@ -142,6 +146,7 @@ public class SymptomControllerTest {
         assertEquals("c", symptomController.findThreeMostCommonSymptoms().get(2));
     }
 
+
     @Test
     public void testThreeMostCommonSymptomsTwoSymptoms() {
         Disease a = new Disease("a");
@@ -161,6 +166,7 @@ public class SymptomControllerTest {
         assertEquals("c", symptomController.findThreeMostCommonSymptoms().get(1));
     }
 
+
     @Test
     public void testThreeMostCommonSymptomsOneSymptom() {
         Disease a = new Disease("a");
@@ -173,6 +179,7 @@ public class SymptomControllerTest {
         assertEquals(1, symptomController.findThreeMostCommonSymptoms().size());
         assertEquals("a", symptomController.findThreeMostCommonSymptoms().get(0));
     }
+
 
     @Test
     public void testThreeMostCommonSymptomsNoSymptoms() {

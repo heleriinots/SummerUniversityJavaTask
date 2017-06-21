@@ -18,16 +18,18 @@ public class Diagnosis {
     ArrayList<Disease> possibleDiseases;
     DiseaseController diseaseController;
 
+
     public Diagnosis(DiseaseController diseaseController) {
         this.diseaseController = diseaseController;
     }
 
-    public ArrayList<Disease> analyseSymptoms(List<String> patientsSymptoms) {
+
+    public ArrayList<Disease> findPossibleDiseases(List<String> patientsSymptoms) {
         possibleDiseases = new ArrayList<>();
 
-        for (Disease disease: diseaseController.getDiseases()) {
+        for (Disease disease : diseaseController.getDiseases()) {
             int symptomCount = 0;
-            for (String symptom: patientsSymptoms) {
+            for (String symptom : patientsSymptoms) {
                 if (disease.containsSymptom(symptom)) symptomCount++;
             }
             if (symptomCount == patientsSymptoms.size()) possibleDiseases.add(disease);
@@ -35,12 +37,12 @@ public class Diagnosis {
         return possibleDiseases;
     }
 
+
     public void askForSymptoms() {
-        System.out.println("Please enter comma separated list of symptoms");
-        System.out.println("e.g. fever, hallucinations, nausea\n");
+        printInputInfo();
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String answer = "";
+        String answer;
 
         try {
             answer = br.readLine();
@@ -51,11 +53,16 @@ public class Diagnosis {
         }
     }
 
+    private void printInputInfo() {
+        System.out.println("Please enter comma separated list of symptoms");
+        System.out.println("e.g. fever, hallucinations, nausea\n");
+    }
+
     public void evaluateSymptoms(String answer) {
         if (answer == null || answer.equals("")) {
             askForSymptoms();
         } else {
-            analyseSymptoms(splitData(answer));
+            findPossibleDiseases(splitData(answer));
             printNamesOfPossibleDiseases();
         }
 

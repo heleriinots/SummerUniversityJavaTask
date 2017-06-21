@@ -1,6 +1,5 @@
-package ee.netgroup.su.diagnostic.web;
+package ee.netgroup.su.diagnostic.cli;
 
-import ee.netgroup.su.diagnostic.cli.Main;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,14 +10,16 @@ import static junit.framework.Assert.assertEquals;
 /**
  * Created by Heleriin on 21/06/2017.
  */
-public class MainTests {
+public class MainTest {
 
     private Main main;
+
 
     @Before
     public void runBeforeEachTest() {
         this.main = new Main();
     }
+
 
     @Test
     public void testSplitData() {
@@ -29,6 +30,7 @@ public class MainTests {
         assertEquals("d", symptoms.get(3));
     }
 
+
     @Test
     public void testDiseaseCreation() {
         main.createDiseaseController();
@@ -36,6 +38,7 @@ public class MainTests {
         assertEquals("Vampiris", main.getDiseaseController().getDiseases().get(0).getName());
         assertEquals(3, main.getDiseaseController().getDiseases().get(0).getNumberOfSymptoms());
     }
+
 
     @Test
     public void testDiseaseCreationMultipleDiseases() {

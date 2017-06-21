@@ -16,31 +16,37 @@ import java.util.Scanner;
 
 public class Main {
 
+    private static boolean runApplication = true;
     private static DiseaseController diseaseController;
     private static SymptomController symptomController;
     private static InteractiveDiagnosis interactiveDiagnosis;
     private static Diagnosis diagnosis;
-    private static boolean runApplication = true;
+
 
     public static DiseaseController getDiseaseController() {
         return diseaseController;
     }
 
+
     public static void createDiseaseController() {
         diseaseController = new DiseaseController();
     }
+
 
     public static void createSymptomController() {
         symptomController = new SymptomController(diseaseController);
     }
 
+
     public static void createDiagnosis() {
         diagnosis = new Diagnosis(diseaseController);
     }
 
+
     public static void createInteractiveDiagnosis() {
         interactiveDiagnosis = new InteractiveDiagnosis(symptomController, diseaseController);
     }
+
 
     private static File getInputFile(final String[] arguments) {
         if (arguments.length < 1)
@@ -82,11 +88,13 @@ public class Main {
         }
     }
 
+
     private static void printStatistics() {
         diseaseController.printThreeDiseasesWithMostSymptoms();
         symptomController.printNumberOfUniqueSymptoms();
         symptomController.printThreeMostCommonSymptoms();
     }
+
 
     public static void askForAction() {
         System.out.println("Enter 1 to get diagnosis by symptoms");
@@ -96,11 +104,13 @@ public class Main {
         readAnswer();
     }
 
+
     private static void readAnswer() {
         Scanner reader = new Scanner(System.in);
         String answer = reader.next();
         evaluateAnswer(answer);
     }
+
 
     public static void evaluateAnswer(String answer) {
         if (answer.equals("1")) {
@@ -127,12 +137,14 @@ public class Main {
         }
     }
 
+
     public static void createDisease(List<String> elements) {
         Disease disease = new Disease(elements.get(0));
         elements.remove(0);
         elements.stream().forEach(s -> disease.addSymptom(s));
         diseaseController.addDisease(disease);
     }
+
 
     public static List<String> splitData(String data) {
         return new ArrayList<>(Arrays.asList(data.split(", ")));

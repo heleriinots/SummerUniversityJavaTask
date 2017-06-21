@@ -1,6 +1,5 @@
-package ee.netgroup.su.diagnostic.web;
+package ee.netgroup.su.diagnostic.cli;
 
-import ee.netgroup.su.diagnostic.cli.Disease;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,15 +12,18 @@ public class DieaseTest {
 
     private Disease disease;
 
+
     @Before
     public void runBeforeEachTest() {
         this.disease = new Disease("Depression");
     }
 
+
     @Test
     public void testGetName() {
         assertEquals("Depression", disease.getName());
     }
+
 
     @Test
     public void testAddSyptom() {
@@ -29,6 +31,7 @@ public class DieaseTest {
         disease.addSymptom("insomnia");
         assertEquals(2, disease.getNumberOfSymptoms());
     }
+
 
     @Test
     public void testGetSymptoms() {
@@ -39,6 +42,7 @@ public class DieaseTest {
         assertEquals(2, disease.getSymptoms().size());
     }
 
+
     @Test
     public void testGetNumberOfSymptoms() {
         disease.addSymptom("sadness");
@@ -47,6 +51,7 @@ public class DieaseTest {
         disease.addSymptom("feelings of hopelessness");
         assertEquals(3, disease.getSymptoms().size());
     }
+
 
     @Test
     public void testContainsSymptom() {

@@ -1,7 +1,6 @@
-package ee.netgroup.su.diagnostic.web.DiagnosisTools;
+package ee.netgroup.su.diagnostic.cli.DiagnosisTools;
 
 import ee.netgroup.su.diagnostic.cli.Controllers.DiseaseController;
-import ee.netgroup.su.diagnostic.cli.DiagnosisTools.Diagnosis;
 import ee.netgroup.su.diagnostic.cli.Disease;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +15,7 @@ import static junit.framework.Assert.assertEquals;
 public class DiagnosisTest {
 
     private Diagnosis diagnosis;
-    private DiseaseController diseaseController;
+
 
     @Before
     public void runBeforeEachTest() {
@@ -40,13 +39,15 @@ public class DiagnosisTest {
         diagnosis = new Diagnosis(diseaseController);
     }
 
+
     @Test
     public void testAnalyseSymptoms() {
         ArrayList<String> symptoms = new ArrayList<>();
         symptoms.add("c");
-        assertEquals(1, diagnosis.analyseSymptoms(symptoms).size());
-        assertEquals("c", diagnosis.analyseSymptoms(symptoms).get(0).getName());
+        assertEquals(1, diagnosis.findPossibleDiseases(symptoms).size());
+        assertEquals("c", diagnosis.findPossibleDiseases(symptoms).get(0).getName());
     }
+
 
     @Test
     public void testAnalyseSymptomsMultipleSymptoms() {
@@ -54,19 +55,20 @@ public class DiagnosisTest {
         symptoms.add("a");
         symptoms.add("b");
 
-        assertEquals(2, diagnosis.analyseSymptoms(symptoms).size());
-        assertEquals("a", diagnosis.analyseSymptoms(symptoms).get(0).getName());
-        assertEquals("b", diagnosis.analyseSymptoms(symptoms).get(1).getName());
+        assertEquals(2, diagnosis.findPossibleDiseases(symptoms).size());
+        assertEquals("a", diagnosis.findPossibleDiseases(symptoms).get(0).getName());
+        assertEquals("b", diagnosis.findPossibleDiseases(symptoms).get(1).getName());
     }
+
 
     @Test
     public void testAnalyseSymptomsMultipleDiseases() {
         ArrayList<String> symptoms = new ArrayList<>();
         symptoms.add("a");
 
-        assertEquals(3, diagnosis.analyseSymptoms(symptoms).size());
-        assertEquals("a", diagnosis.analyseSymptoms(symptoms).get(0).getName());
-        assertEquals("b", diagnosis.analyseSymptoms(symptoms).get(1).getName());
-        assertEquals("c", diagnosis.analyseSymptoms(symptoms).get(2).getName());
+        assertEquals(3, diagnosis.findPossibleDiseases(symptoms).size());
+        assertEquals("a", diagnosis.findPossibleDiseases(symptoms).get(0).getName());
+        assertEquals("b", diagnosis.findPossibleDiseases(symptoms).get(1).getName());
+        assertEquals("c", diagnosis.findPossibleDiseases(symptoms).get(2).getName());
     }
 }

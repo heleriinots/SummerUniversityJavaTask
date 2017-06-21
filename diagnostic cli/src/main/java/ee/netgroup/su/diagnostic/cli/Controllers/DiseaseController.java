@@ -18,13 +18,16 @@ public class DiseaseController {
         if (!diseases.contains(disease)) diseases.add(disease);
     }
 
+
     public ArrayList<Disease> getDiseases() {
         return diseases;
     }
 
+
     public void sortDiseasesAlphabetically() {
         Collections.sort(diseases, Comparator.comparing(Disease::getName));
     }
+
 
     private int findLargestValue() {
         return diseases
@@ -33,6 +36,7 @@ public class DiseaseController {
                 .max()
                 .getAsInt();
     }
+
 
     private int findSmallerLargestValue(int largestValue) {
         return diseases
@@ -43,13 +47,16 @@ public class DiseaseController {
                 .getAsInt();
     }
 
+
     private ArrayList<Disease> addMaxElements(int largestValue, ArrayList<Disease> maxValues) {
         diseases.stream().filter(d -> d.getNumberOfSymptoms() == largestValue).forEach(d -> {
             if (maxValues.size() < 3) {
                 maxValues.add(d);
-            }});
+            }
+        });
         return maxValues;
     }
+
 
     public ArrayList<Disease> findThreeDiseasesWithMostSymptoms() {
         ArrayList<Disease> maxValues = new ArrayList<>();
@@ -76,6 +83,7 @@ public class DiseaseController {
         return maxValues;
     }
 
+
     public void printThreeDiseasesWithMostSymptoms() {
         ArrayList<Disease> maxSymptomDiseases = findThreeDiseasesWithMostSymptoms();
         System.out.println("Three diseases with most symptoms: " + "\n");
@@ -84,9 +92,6 @@ public class DiseaseController {
                 .forEach(d -> System.out.println(d.getName()));
         System.out.println();
     }
-
-
-
 
 
 }

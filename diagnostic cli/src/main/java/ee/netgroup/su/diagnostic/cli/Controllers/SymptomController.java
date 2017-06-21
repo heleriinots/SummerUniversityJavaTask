@@ -17,6 +17,7 @@ public class SymptomController {
         addSymptoms();
     }
 
+
     private void addSymptoms() {
         diseaseController
                 .getDiseases()
@@ -27,6 +28,7 @@ public class SymptomController {
                         .forEach(s -> addSymptom(s)));
     }
 
+
     private void addSymptom(String symptom) {
         if (symptoms.containsKey(symptom)) {
             symptoms.put(symptom, symptoms.get(symptom) + 1);
@@ -35,9 +37,11 @@ public class SymptomController {
         }
     }
 
+
     public int getNumberOfUniqueSymptoms() {
         return symptoms.size();
     }
+
 
     private int findLargestValue() {
         Map.Entry<String, Integer> maxElement = null;
@@ -49,6 +53,7 @@ public class SymptomController {
         }
         return maxElement.getValue();
     }
+
 
     private int findSmallerLargestValue(int largestValue) {
         Map.Entry<String, Integer> maxElement = null;
@@ -63,7 +68,8 @@ public class SymptomController {
         return maxElement.getValue();
     }
 
-    private ArrayList<String> addMaxSymptoms(int largestValue, ArrayList<String> maxValues) {
+
+    private ArrayList<String> getListOfMostCommonSymptoms(int largestValue, ArrayList<String> maxValues) {
         for (Map.Entry<String, Integer> element : symptoms.entrySet()) {
             if (element.getValue() == largestValue && maxValues.size() < 3) {
                 maxValues.add(element.getKey());
@@ -71,6 +77,7 @@ public class SymptomController {
         }
         return maxValues;
     }
+
 
     public ArrayList<String> findThreeMostCommonSymptoms() {
         ArrayList<String> maxValues = new ArrayList<>();
@@ -84,7 +91,7 @@ public class SymptomController {
                 largestValue = findSmallerLargestValue(largestValue);
             }
 
-            maxValues = addMaxSymptoms(largestValue, maxValues);
+            maxValues = getListOfMostCommonSymptoms(largestValue, maxValues);
 
             if (maxValues.size() == symptoms.size()) {
                 return maxValues;
@@ -94,9 +101,11 @@ public class SymptomController {
         return maxValues;
     }
 
+
     public TreeMap<String, Integer> getSymptoms() {
         return symptoms;
     }
+
 
     public void printThreeMostCommonSymptoms() {
         ArrayList<String> commonSymptoms = findThreeMostCommonSymptoms();

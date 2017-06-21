@@ -1,6 +1,5 @@
-package ee.netgroup.su.diagnostic.web.Controllers;
+package ee.netgroup.su.diagnostic.cli.Controllers;
 
-import ee.netgroup.su.diagnostic.cli.Controllers.DiseaseController;
 import ee.netgroup.su.diagnostic.cli.Disease;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,10 +13,12 @@ public class DiseaseControllerTest {
 
     private DiseaseController diseaseController;
 
+
     @Before
     public void runBeforeEachTest() {
         diseaseController = new DiseaseController();
     }
+
 
     @Test
     public void testAddDisease() {
@@ -28,6 +29,7 @@ public class DiseaseControllerTest {
         assertEquals("a", diseaseController.getDiseases().get(0).getName());
         assertEquals("b", diseaseController.getDiseases().get(1).getName());
     }
+
 
     @Test
     public void testSortAlphabetically() {
@@ -42,6 +44,7 @@ public class DiseaseControllerTest {
         assertEquals("b", diseaseController.getDiseases().get(2).getName());
         assertEquals("c", diseaseController.getDiseases().get(3).getName());
     }
+
 
     @Test
     public void testGetThreeDiseasesWithMaxSymptoms() {
@@ -69,6 +72,7 @@ public class DiseaseControllerTest {
         assertEquals("ab", diseaseController.findThreeDiseasesWithMostSymptoms().get(2).getName());
     }
 
+
     @Test
     public void testGetThreeDiseasesWithMaxSymptomsTwoDiseases() {
         Disease a = new Disease("a");
@@ -85,6 +89,7 @@ public class DiseaseControllerTest {
         assertEquals("ab", diseaseController.findThreeDiseasesWithMostSymptoms().get(1).getName());
     }
 
+
     @Test
     public void testGetThreeDiseasesWithMaxSymptomsOneDisease() {
         Disease a = new Disease("a");
@@ -96,10 +101,12 @@ public class DiseaseControllerTest {
         assertEquals("a", diseaseController.findThreeDiseasesWithMostSymptoms().get(0).getName());
     }
 
+
     @Test
     public void testGetThreeDiseasesWithMaxSymptomsNoDiseases() {
         assertEquals(0, diseaseController.findThreeDiseasesWithMostSymptoms().size());
     }
+
 
     @Test
     public void testGetThreeDiseasesWithDifferentValues() {
