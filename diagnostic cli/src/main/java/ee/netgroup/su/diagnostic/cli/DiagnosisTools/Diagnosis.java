@@ -54,7 +54,7 @@ public class Diagnosis {
     }
 
     private void printInputInfo() {
-        System.out.println("Please enter comma separated list of symptoms");
+        System.out.println("Please enter a comma separated list of symptoms");
         System.out.println("e.g. fever, hallucinations, nausea\n");
     }
 

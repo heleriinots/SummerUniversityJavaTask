@@ -27,36 +27,42 @@ public class DieaseTest {
 
     @Test
     public void testAddSyptom() {
-        disease.addSymptom("sadness");
-        disease.addSymptom("insomnia");
+        addSymptoms();
+
         assertEquals(2, disease.getNumberOfSymptoms());
     }
 
 
     @Test
     public void testGetSymptoms() {
-        disease.addSymptom("sadness");
-        disease.addSymptom("insomnia");
+        addSymptoms();
+
         assertTrue(disease.getSymptoms().contains("sadness"));
         assertTrue(disease.getSymptoms().contains("insomnia"));
         assertEquals(2, disease.getSymptoms().size());
     }
 
+    private void addSymptoms() {
+        disease.addSymptom("sadness");
+        disease.addSymptom("insomnia");
+    }
+
 
     @Test
     public void testGetNumberOfSymptoms() {
-        disease.addSymptom("sadness");
-        disease.addSymptom("insomnia");
+        addSymptoms();
+
         disease.addSymptom("insomnia");
         disease.addSymptom("feelings of hopelessness");
+
         assertEquals(3, disease.getSymptoms().size());
     }
 
 
     @Test
     public void testContainsSymptom() {
-        disease.addSymptom("sadness");
-        disease.addSymptom("insomnia");
+        addSymptoms();
+
         assertTrue(disease.containsSymptom("sadness"));
         assertTrue(disease.containsSymptom("insomnia"));
         assertFalse(disease.containsSymptom("feelings of hope"));

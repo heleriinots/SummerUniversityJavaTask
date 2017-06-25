@@ -87,7 +87,7 @@ public class SymptomControllerTest {
 
 
     @Test
-    public void testThreeMostCommonSymptoms() {
+    public void testFindThreeMostCommonSymptoms() {
         Disease a = new Disease("a");
         a.addSymptom("a");
         a.addSymptom("c");
@@ -118,7 +118,7 @@ public class SymptomControllerTest {
 
 
     @Test
-    public void testThreeMostCommonSymptomsSameValues() {
+    public void testFindThreeMostCommonSymptomsSameValues() {
         Disease a = new Disease("a");
         a.addSymptom("a");
 
@@ -148,7 +148,7 @@ public class SymptomControllerTest {
 
 
     @Test
-    public void testThreeMostCommonSymptomsTwoSymptoms() {
+    public void testFindThreeMostCommonSymptomsTwoSymptoms() {
         Disease a = new Disease("a");
         a.addSymptom("a");
 
@@ -168,7 +168,7 @@ public class SymptomControllerTest {
 
 
     @Test
-    public void testThreeMostCommonSymptomsOneSymptom() {
+    public void testFindThreeMostCommonSymptomsOneSymptom() {
         Disease a = new Disease("a");
         a.addSymptom("a");
 
@@ -182,7 +182,7 @@ public class SymptomControllerTest {
 
 
     @Test
-    public void testThreeMostCommonSymptomsNoSymptoms() {
+    public void testFindThreeMostCommonSymptomsNoSymptoms() {
         Disease a = new Disease("a");
 
         diseaseController.addDisease(a);

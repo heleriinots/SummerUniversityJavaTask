@@ -47,7 +47,7 @@ public class DiseaseControllerTest {
 
 
     @Test
-    public void testGetThreeDiseasesWithMaxSymptoms() {
+    public void testGetThreeDiseasesWithMostSymptoms() {
         Disease c = new Disease("c");
         c.addSymptom("a");
         c.addSymptom("b");
@@ -74,7 +74,7 @@ public class DiseaseControllerTest {
 
 
     @Test
-    public void testGetThreeDiseasesWithMaxSymptomsTwoDiseases() {
+    public void testGetThreeDiseasesWithMostSymptomsTwoDiseases() {
         Disease a = new Disease("a");
         a.addSymptom("a");
 
@@ -91,7 +91,7 @@ public class DiseaseControllerTest {
 
 
     @Test
-    public void testGetThreeDiseasesWithMaxSymptomsOneDisease() {
+    public void testGetThreeDiseasesWithMostSymptomsOneDisease() {
         Disease a = new Disease("a");
         a.addSymptom("a");
 
@@ -103,7 +103,7 @@ public class DiseaseControllerTest {
 
 
     @Test
-    public void testGetThreeDiseasesWithMaxSymptomsNoDiseases() {
+    public void testGetThreeDiseasesWithMostSymptomsNoDiseases() {
         assertEquals(0, diseaseController.findThreeDiseasesWithMostSymptoms().size());
     }
 
